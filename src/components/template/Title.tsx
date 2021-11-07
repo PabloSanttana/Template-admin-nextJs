@@ -11,6 +11,7 @@ export default function Title(props: TitleProps) {
           font-black
           text-3xl
           text-gray-900  
+          dark:text-gray-100
       `}
       >
         {props.title}
@@ -20,6 +21,7 @@ export default function Title(props: TitleProps) {
         font-light
         text-sm
         text-gray-600
+        dark:text-gray-200
       `}
       >
         {props.subTitle}

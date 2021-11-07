@@ -1,4 +1,5 @@
-import { IconBell, IconHome, IconSetting } from "../icons";
+// pra mais icones acessar... https://heroicons.com/
+import { IconBell, IconHome, IconLogout, IconSetting } from "../icons";
 import { HeaderItem } from "./HeaderItem";
 import { Logo } from "./Logo";
 
@@ -6,7 +7,13 @@ interface SideBarProps {}
 
 export default function SideBar(props: SideBarProps) {
   return (
-    <aside>
+    <aside
+      className={`
+    flex flex-col
+    bg-gray-200 text-gray-700
+    dark:bg-gray-900
+    `}
+    >
       <div
         className={`
         flex flex-col items-center justify-center
@@ -16,10 +23,24 @@ export default function SideBar(props: SideBarProps) {
       >
         <Logo />
       </div>
-      <ul>
+      <ul className={`flex-grow`}>
         <HeaderItem url="/" text="Início" icon={IconHome} />
         <HeaderItem url="/ajuste" text="Ajuste" icon={IconSetting} />
         <HeaderItem url="/notificacoes" text="Novidades" icon={IconBell} />
+      </ul>
+      <ul className={`cursor-pointer`}>
+        <HeaderItem
+          text="Sair"
+          icon={IconLogout}
+          onClick={() => console.log("oioioi")}
+          className={`
+          text-red-600 
+          dark:text-red-400
+          hover:bg-red-400 
+          hover:text-white 
+          dark:hover:text-white
+          `}
+        />
       </ul>
     </aside>
   );
