@@ -1,5 +1,6 @@
 import { IconBell, IconHome, IconSetting } from "../icons";
 import { HeaderItem } from "./HeaderItem";
+import { Logo } from "./Logo";
 
 interface SideBarProps {}
 
@@ -12,7 +13,9 @@ export default function SideBar(props: SideBarProps) {
         h-20 w-20
         bg-gradient-to-r from-indigo-500 to-purple-500
       `}
-      ></div>
+      >
+        <Logo />
+      </div>
       <ul>
         <HeaderItem url="/" text="Início" icon={IconHome} />
         <HeaderItem url="/ajuste" text="Ajuste" icon={IconSetting} />

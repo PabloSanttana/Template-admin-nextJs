@@ -1,0 +1,53 @@
+.circuleAnimate {
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  position: relative;
+}
+
+.one {
+  background-color: #dc2626;
+  animation-name: one;
+}
+.two {
+  background-color: #059669;
+  animation-name: two;
+}
+.three {
+  background-color: #f59e0b;
+  animation-name: three;
+}
+
+@keyframes one {
+  0% {
+    transform: translatex(0px) translatey(0px);
+  }
+  33% {
+    transform: translatex(67%) translatey(133%);
+  }
+  66% {
+    transform: translatex(-67%) translatey(133%);
+  }
+}
+@keyframes two {
+  0% {
+    transform: translatex(0px) translatey(0px);
+  }
+  33% {
+    transform: translatex(-133%) translatey(0%);
+  }
+  66% {
+    transform: translatex(-67%) translatey(-133%);
+  }
+}
+
+@keyframes three {
+  0% {
+    transform: translatex(0px) translatey(0px);
+  }
+  33% {
+    transform: translatex(67%) translatey(-133%);
+  }
+  66% {
+    transform: translatex(133%) translatey(0%);
+  }
+}
