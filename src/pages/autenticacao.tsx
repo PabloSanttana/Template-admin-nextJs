@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import AuthInput from "../components/Auth/AuthInput";
 import { IconWarning } from "../components/icons";
+import useAuth from "../data/hook/useAuth";
 
 interface AutenticacaoProps {}
 
 export default function Autenticacao() {
+  const { user, loginGoogle } = useAuth();
+
   const [mod, setMod] = useState<"login" | "cadastro">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -80,6 +83,7 @@ export default function Autenticacao() {
         </form>
         <hr className="my-6 border-gray-300 w-full" />
         <button
+          onClick={loginGoogle}
           className={`
           w-full bg-red-500 hover:bg-red-400 
           text-white rounded-lg px-4 py-3 `}
