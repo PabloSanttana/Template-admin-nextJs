@@ -6,7 +6,7 @@ import useAuth from "../data/hook/useAuth";
 interface AutenticacaoProps {}
 
 export default function Autenticacao() {
-  const { user, loginGoogle } = useAuth();
+  const { loginGoogle, login, createUser, isLoading } = useAuth();
 
   const [mod, setMod] = useState<"login" | "cadastro">("login");
   const [email, setEmail] = useState("");
@@ -19,11 +19,16 @@ export default function Autenticacao() {
     setTimeout(() => setError(null), time * 1000);
   }
 
-  function handleSubmit() {
-    if (mod === "login") {
-      console.log("login");
-    } else {
-      console.log("cadastro");
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      if (mod === "login") {
+        await login(email, password);
+      } else {
+        await createUser(email, password);
+      }
+    } catch (error) {
+      showError(error.message);
     }
   }
 
@@ -72,13 +77,21 @@ export default function Autenticacao() {
             setValue={setPassword}
             required
           />
+          <span className={`text-gray-500`}>
+            A senha deve ter conter no mínimo 6 caracteres
+          </span>
+
           <button
-            className={`
+            className={` 
           w-full bg-indigo-500 hover:bg-indigo-400 
           text-white rounded-lg px-4 py-3 mt-6`}
             type="submit"
           >
-            {mod === "login" ? "Entrar" : "Cadastrar"}
+            {isLoading ? (
+              "Carregando..."
+            ) : (
+              <> {mod === "login" ? "Entrar" : "Cadastrar"}</>
+            )}
           </button>
         </form>
         <hr className="my-6 border-gray-300 w-full" />

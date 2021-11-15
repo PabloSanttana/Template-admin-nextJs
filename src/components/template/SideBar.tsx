@@ -1,11 +1,15 @@
 // pra mais icones acessar... https://heroicons.com/
+
 import { IconBell, IconHome, IconLogout, IconSetting } from "../icons";
+
 import { HeaderItem } from "./HeaderItem";
 import { Logo } from "./Logo";
+import useAuth from "../../data/hook/useAuth";
 
 interface SideBarProps {}
 
 export default function SideBar(props: SideBarProps) {
+  const { logout } = useAuth();
   return (
     <aside
       className={`
@@ -32,7 +36,7 @@ export default function SideBar(props: SideBarProps) {
         <HeaderItem
           text="Sair"
           icon={IconLogout}
-          onClick={() => console.log("oioioi")}
+          onClick={logout}
           className={`
           text-red-600 
           dark:text-red-400

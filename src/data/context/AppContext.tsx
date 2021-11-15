@@ -1,19 +1,27 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
-type theme = "dark" | "";
+//type theme = "dark" | "";
 
 interface AppContextProps {
-  theme?: theme;
+  theme?: string;
   toggleTheme?: () => void;
 }
 
 const AppContext = createContext<AppContextProps>({});
 
 export function AppProvider(props) {
-  const [theme, setTheme] = useState<theme>("");
+  const [theme, setTheme] = useState("");
+
+  useEffect(() => {
+    const getTheme = localStorage.getItem("theme");
+    if (getTheme) {
+      setTheme(getTheme);
+    }
+  }, []);
 
   function toggleTheme() {
     setTheme(theme === "" ? "dark" : "");
+    localStorage.setItem("theme", theme === "" ? "dark" : "");
   }
 
   return (

@@ -1,4 +1,5 @@
 import useAppData from "../../data/hook/useAppData";
+import ProtectionRouter from "../Auth/ProtectionRouter";
 import Content from "./Content";
 import Header from "./Header";
 import SideBar from "./SideBar";
@@ -12,21 +13,23 @@ interface LayoutProps {
 export default function Layout(props: LayoutProps) {
   const ctx = useAppData();
   return (
-    <div
-      className={`
+    <ProtectionRouter>
+      <div
+        className={`
       ${ctx.theme}
        flex h-screen w-screen
     `}
-    >
-      <SideBar />
-      <div
-        className={`
+      >
+        <SideBar />
+        <div
+          className={`
         flex flex-col w-full p-7 bg-gray-300 dark:bg-gray-700
       `}
-      >
-        <Header title={props.title} subTitle={props.subTitle} />
-        <Content>{props.children}</Content>
+        >
+          <Header title={props.title} subTitle={props.subTitle} />
+          <Content>{props.children}</Content>
+        </div>
       </div>
-    </div>
+    </ProtectionRouter>
   );
 }
